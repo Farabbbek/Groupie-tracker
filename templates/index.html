@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/8f3bdc1/styles/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="header-content">
+          <a href="/" class="site-title-link">
+            <h1 class="site-title"><span>Groupie</span> Tracker</h1>
+          </a>
+          <div class="search-container" role="search">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search band or member..."
+              class="search-input"
+              autocomplete="off"
+              aria-label="Search bands or members"
+            />
+            <div id="search-suggestions" class="suggestions-box hidden"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="container" aria-label="Filter options">
+      <div class="filter-toggles">
+        <button class="toggle-button active" data-filter="creation">
+          Creation
+        </button>
+        <button class="toggle-button" data-filter="album">First Album</button>
+        <button class="toggle-button" data-filter="members">Members</button>
+      </div>
+      <div id="creation-date-filter-block" class="date-filter-block">
+        <h4>Filtered by Creation date</h4>
+        <div class="range-slider-container">
+          <div class="range-labels">
+            <span id="creation-min-year-label">1950</span>
+            <span id="creation-max-year-label">2025</span>
+          </div>
+          <input
+            type="range"
+            id="creation-min-year-slider"
+            min="1950"
+            max="2025"
+            value="1950"
+            aria-label="Creation date from"
+          />
+          <input
+            type="range"
+            id="creation-max-year-slider"
+            min="1950"
+            max="2025"
+            value="2025"
+            aria-label="Creation date to"
+          />
+        </div>
+      </div>
+      <div id="album-date-filter-block" class="date-filter-block hidden">
+        <h4>Filtered by First Album</h4>
+        <div class="range-slider-container">
+          <div class="range-labels">
+            <span id="album-min-year-label">1950</span>
+            <span id="album-max-year-label">2025</span>
+          </div>
+          <input
+            type="range"
+            id="album-min-year-slider"
+            min="1950"
+            max="2025"
+            value="1950"
+            aria-label="First album date from"
+          />
+          <input
+            type="range"
+            id="album-max-year-slider"
+            min="1950"
+            max="2025"
+            value="2025"
+            aria-label="First album date to"
+          />
+        </div>
+      </div>
+      <div id="members-filter-block" class="date-filter-block hidden">
+        <h4>Filtered by Members</h4>
+        <div class="range-slider-container">
+          <div class="range-labels">
+            <span id="members-min-label">0</span>
+            <span id="members-max-label">10</span>
+          </div>
+          <input
+            type="range"
+            id="members-min-slider"
+            min="0"
+            max="10"
+            value="0"
+            aria-label="Minimum members"
+          />
+          <input
+            type="range"
+            id="members-max-slider"
+            min="0"
+            max="10"
+            value="10"
+            aria-label="Maximum members"
+          />
+        </div>
+      </div>
+    </section>
+    <main>
+      <div id="artists-container" class="container"></div>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© 2025 Groupie Tracker</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/static/8f3bdc1/js/main.js" defer></script>
+    <script src="/static/8f3bdc1/js/filters.js" defer></script>
+    <script src="/static/8f3bdc1/js/search.js" defer></script>
+  </body>
+</html>
