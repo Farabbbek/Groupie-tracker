@@ -6,7 +6,6 @@ import (
 )
 
 func RenderErrorPage(w http.ResponseWriter, r *http.Request, status int) {
-	w.WriteHeader(status)
 	switch status {
 	case http.StatusNotFound:
 		http.ServeFile(w, r, "templates/errors/error404.html")
