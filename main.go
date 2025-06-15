@@ -43,15 +43,11 @@ func main() {
 	mux := http.NewServeMux()
 
 	// Serve static files Checking and error
-	// Обрабатываем стили по скрытому пути
-	mux.Handle("/static/8f3bdc1/styles/", handlers.KyzetDirListing(
-		handlers.FileServer404("/static/8f3bdc1/styles/", "static/styles"),
-	))
+	stylesHandler := http.StripPrefix("/static/8f3bdc1/styles/", handlers.ProtectedFileServer("static/styles"))
+	mux.Handle("/static/8f3bdc1/styles/", stylesHandler)
 
-	// Обрабатываем скрипты по скрытому пути
-	mux.Handle("/static/8f3bdc1/js/", handlers.KyzetDirListing(
-		handlers.FileServer404("/static/8f3bdc1/js/", "static/js"),
-	))
+	jsHandler := http.StripPrefix("/static/8f3bdc1/js/", handlers.ProtectedFileServer("static/js"))
+	mux.Handle("/static/8f3bdc1/js/", jsHandler)
 
 	// Register routes with data
 	handlers.SetupRoutes(mux, artists, relations)

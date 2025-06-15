@@ -18,18 +18,13 @@ func RenderErrorPage(w http.ResponseWriter, r *http.Request, status int) {
 	}
 }
 
-func FileServer404(prefix string, dir string) http.Handler {
+func ProtectedFileServer(dir string) http.Handler {
 	fs := http.FileServer(http.Dir(dir))
-	return http.StripPrefix(prefix, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		ref := r.Header.Get("Referer")
-		if ref == "" || !strings.HasPrefix(ref, "http://localhost:8080/") {
-			RenderErrorPage(w, r, http.StatusNotFound)
-			return
-		}
-		if _, err := http.Dir(dir).Open(r.URL.Path); err != nil {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasSuffix(r.URL.Path, "/") {
 			RenderErrorPage(w, r, http.StatusNotFound)
 			return
 		}
 		fs.ServeHTTP(w, r)
-	}))
+	})
 }
